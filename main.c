@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 23:29:46 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 08:22:01 by bopok            ###   ########.fr       */
+/*   Updated: 2021/08/14 09:03:54 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,16 @@ int		main(int argc, char **argv)
 
 char	*parse_args(char *input)
 {
-	int	i;
+	int		i;
+	char	*path;
 
 	i = -1;
 	while (input[++i])
 	{
-		
+		if (input[i] == ' ')
+		{
+			path = malloc(i + 1);
+			
+		}
 	}
 }
