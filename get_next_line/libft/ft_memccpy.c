@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.h                                     :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Created: 2019/12/02 14:28:45 by qmattor           #+#    #+#             */
+/*   Updated: 2019/12/08 04:26:11 by qmattor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL
-# define FT_MINISHELL
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-extern int	errno;
+void	*ft_memccpy(void *dest, void *src, int c, size_t n)
+{
+	void	*p;
 
-/*********  	main.c		***********/
-char	    *scrape_args(char *input);
-
-#endif
+	p = ft_memchr(src, c, n);
+	p != NULL ? ft_memcpy(dest, src, p - src + 1) : ft_memcpy(dest, src, n);
+	return (p == NULL ? NULL : (dest + (p - src + 1)));
+}

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.h                                     :+:      :+:    :+:   */
+/*   ft_countforstrings.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Created: 2019/12/05 23:47:09 by qmattor           #+#    #+#             */
+/*   Updated: 2019/12/09 01:57:16 by qmattor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL
-# define FT_MINISHELL
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-extern int	errno;
+int		ft_countforstrings(char identifier, char *src)
+{
+	int x;
 
-/*********  	main.c		***********/
-char	    *scrape_args(char *input);
-
-#endif
+	x = 0;
+	while (*src)
+	{
+		if ((*src == identifier) && (*(src + 1) != identifier))
+			x++;
+		src++;
+	}
+	return (x + 1);
+}

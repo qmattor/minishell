@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.h                                     :+:      :+:    :+:   */
+/*   ft_iswhtspc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Created: 2019/12/03 19:46:41 by qmattor           #+#    #+#             */
+/*   Updated: 2020/02/23 13:45:57 by qmattor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL
-# define FT_MINISHELL
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-extern int	errno;
-
-/*********  	main.c		***********/
-char	    *scrape_args(char *input);
-
-#endif
+int		ft_iswhtspc(char c)
+{
+	return (c == ' ' || c == '\n' || c == '\t' ||
+	c == '\v' || c == '\r' || c == '\f');
+}

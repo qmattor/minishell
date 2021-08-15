@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.h                                     :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Created: 2019/12/02 22:14:47 by qmattor           #+#    #+#             */
+/*   Updated: 2019/12/14 14:48:02 by qmattor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL
-# define FT_MINISHELL
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-extern int	errno;
+char	*ft_strncat(char *dest, char *src, size_t n)
+{
+	char	*ogptr;
 
-/*********  	main.c		***********/
-char	    *scrape_args(char *input);
-
-#endif
+	ogptr = dest;
+	while (*dest)
+		dest++;
+	while (*src && n--)
+		*dest++ = *src++;
+	*dest = 0;
+	return (ogptr);
+}

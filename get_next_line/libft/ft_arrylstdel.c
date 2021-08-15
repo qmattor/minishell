@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.h                                     :+:      :+:    :+:   */
+/*   ft_arrylstdel.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Created: 2019/12/21 23:37:53 by qmattor           #+#    #+#             */
+/*   Updated: 2019/12/21 23:41:04 by qmattor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL
-# define FT_MINISHELL
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-extern int	errno;
-
-/*********  	main.c		***********/
-char	    *scrape_args(char *input);
-
-#endif
+int		ft_arrylstdel(t_arraylist *lst, long int spot)
+{
+	free(lst->array[spot]);
+	lst->inuse[spot] = 0;
+	return (0);
+}

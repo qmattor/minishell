@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_minishell.h                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Created: 2021/08/14 09:59:08 by bopok             #+#    #+#             */
+/*   Updated: 2021/08/15 00:53:07 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL
-# define FT_MINISHELL
-# include <unistd.h>
+#ifndef GET_NEXT_LINE
+# define GET_NEXT_LINE
+
 # include <stdlib.h>
-# include <stdio.h>
+# include <unistd.h>
+# include <limits.h>
 # include "libft/libft.h"
 
-extern int	errno;
+# define BUFF_SIZE 24
 
-/*********  	main.c		***********/
-char	    *scrape_args(char *input);
+typedef struct			s_file
+{
+	char				*buf;
+	int					index;
+	char				res;
+	int					fd;
+}						t_file;
 
 #endif
