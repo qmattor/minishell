@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 09:58:48 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 18:42:04 by bopok            ###   ########.fr       */
+/*   Updated: 2021/08/15 14:16:11 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ t_file	*newele(int fd)
 
 	ret = malloc(sizeof(t_file));
 	ret->index = BUFF_SIZE + 1;
-	ret->buf = malloc(BUFF_SIZE);
+	ret->buf = ft_strnew(BUFF_SIZE);
 	ret->fd = fd;
+	ret->flag = 0;
 	return (ret);
 }
 
@@ -29,60 +30,35 @@ void	delele(t_file *thing)
 	free(thing);
 }
 
-
 char	*read_to_newline(t_file *file)
 {
 	int		i;
 
-	if (file->index >= BUFF_SIZE)	//get new buffer
+	if (file->index >= BUFF_SIZE)
 	{
+		ft_bzero(file->buf, BUFF_SIZE);
 		file->res = read(file->fd, file->buf, BUFF_SIZE);
 		file->index = 0;
-		if (file->res <= 0)		//error / eof
+		if (file->res <= 0)
+		{
+			file->flag = file->res == 0 ? EOF : 0;
 			return (NULL);
+		}
 	}
 	i = file->index;
 	while (file->index <= BUFF_SIZE)
 	{
-		if (file->buf[file->index++] == '\n')
+		if (file->buf[file->index] == '\n')
 		{
-			return (ft_strsub(file->buf, i, file->index - i - 1));
+			file->flag = EOL;
+			file->index++;
+			return(ft_strncpy(ft_strnew(file->index - 1 - i), &(file->buf[i]), file->index - 1 - i));
 		}
+		file->index++;
 	}
-	return (ft_strsub(file->buf, i, file->index - i - 1));
+	return (ft_strncpy(ft_strnew(file->index - i), &(file->buf[i]), file->index - i));
 }
 
-/*
-char	*read_to_newline(t_file *file)
-{
-	char	*str;
-	char	*ptr;
-
-	str = ft_strnew(BUFF_SIZE);
-	if (file->index == 0)
-		file->res = read(file->fd, file->buf, BUFF_SIZE);
-	if (file->res == -1)
-	{
-		free(str);
-		return NULL;
-	}
-	ptr = &(file->buf[file->index]);					//starts on last '\n'
-	while (file->index < file->res)						//problems with the \n lining up with the buffer
-		if (file->buf[file->index++] == '\n')
-		{
-			if (file->index == BUFF_SIZE)
-			{
-				ft_strncpy(str, ptr, (&file->buf[file->index - 1] - ptr));
-				return (str);
-			}
-			ft_strncpy(str, ptr, (&file->buf[file->index - 1] - ptr));
-			file->index += 2;
-			return (str);
-		}
-	ft_strncpy(str, ptr, (&file->buf[file->index] - ptr));
-	return (str);
-}
-*/
 int		get_next_line(const int fd, char **line)
 {
 	static t_file	*fe[OPEN_MAX];
@@ -102,12 +78,17 @@ int		get_next_line(const int fd, char **line)
 		free(temp2);
 		if (fe[fd]->res == -1)
 			return -1;
-		if (!fe[fd]->res || fe[fd]->index <= BUFF_SIZE)
+		if (fe[fd]->flag == EOF)
 		{
 			*line = running;
-			return (fe[fd]->res);
+			return (0);
 		}
-
+		if (fe[fd]->flag == EOL)
+		{
+			fe[fd]->flag = 0;
+			*line = running;
+			return (1);
+		}
 	}
 }
 
@@ -117,11 +98,7 @@ int		get_next_line(const int fd, char **line)
 int	main()
 {
 	char *line;
-	int x = open("test", O_RDONLY);
-	int y = open("testtwo", O_RDONLY);
-	while (get_next_line(x, &line))
-		printf("%s\n", line);
-	printf("%s\n", line);
+	int y = open("testTwo", O_RDONLY);
 	while (get_next_line(y, &line))
 		printf("%s\n", line);
 	printf("%s\n", line);
