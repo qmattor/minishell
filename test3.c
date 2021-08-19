@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_searchlst.c                                     :+:      :+:    :+:   */
+/*   test3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/18 22:19:16 by qmattor           #+#    #+#             */
-/*   Updated: 2019/12/19 13:51:57 by qmattor          ###   ########.fr       */
+/*   Created: 2021/08/17 07:32:03 by bopok             #+#    #+#             */
+/*   Updated: 2021/08/17 07:37:10 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-t_list	*ft_searchlst(t_list *lst, int fd)
+int main (int argv, char **argc)
 {
-	while (lst->next != NULL)
-	{
-		if (lst->content_size == (size_t)fd)
-			return (lst);
-		lst = lst->next;
-	}
-	if (lst->content_size == (size_t)fd)
-		return (lst);
-	return (NULL);
+    write(1, "test with write\n", 16);
 }

@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 09:59:08 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/15 01:02:42 by bopok            ###   ########.fr       */
+/*   Updated: 2021/08/17 00:19:44 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define BUFF_SIZE 24
 # define NOFLAG 0
-# define EOF 1
+# define ENDFILE 1
 # define EOL 2
 
 typedef struct			s_file
@@ -32,4 +32,9 @@ typedef struct			s_file
 	int					fd;
 }						t_file;
 
+
+t_file					*newele(int fd);
+void					delele(t_file *thing);
+char					*read_to_newline(t_file *file);
+int						get_next_line(const int fd, char **line);
 #endif

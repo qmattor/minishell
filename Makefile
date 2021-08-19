@@ -1,8 +1,9 @@
 CC := gcc
-NAME := get_next_line.a
+NAME := ft_minishell
 CFLAGS := -Wall -Wextra -Werror
-LIBFT := libft/libft.a
-SOURCE :=	get_next_line.c
+LIBFT := get_next_line/libft/libft.a
+GNL := get_next_line/get_next_line.a
+SOURCE := main.c
 
 OBJECTS := $(patsubst %.c,%.o,$(SOURCE))
 
@@ -12,18 +13,17 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJECTS)
-	make -C libft
-	ar rc $@ $^
-	ranlib $(NAME)
+	make -C get_next_line
+	$(CC) $(CFLAGS) $(OBJECTS) $(GNL) $(LIBFT) -o $(NAME)
 
 debug:
-	$(CC) $(CFLAGS) -g $(SOURCE) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) -g $(SOURCE) $(GNL) $(LIBFT) -o $(NAME)
 
 sanitize:
 	$(CC) $(CFLAGS) -fsanitize=address $(SOURCE) $(LIBFT) -o $(NAME)
 
 clean:
-	make -C libft clean
+	make -C get_next_line clean
 	rm -f $(OBJECTS)
 
 sclean:

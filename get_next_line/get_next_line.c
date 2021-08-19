@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 09:58:48 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/15 14:16:11 by bopok            ###   ########.fr       */
+/*   Updated: 2021/08/17 00:20:26 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*read_to_newline(t_file *file)
 		file->index = 0;
 		if (file->res <= 0)
 		{
-			file->flag = file->res == 0 ? EOF : 0;
+			file->flag = file->res == 0 ? ENDFILE : 0;
 			return (NULL);
 		}
 	}
@@ -78,7 +78,7 @@ int		get_next_line(const int fd, char **line)
 		free(temp2);
 		if (fe[fd]->res == -1)
 			return -1;
-		if (fe[fd]->flag == EOF)
+		if (fe[fd]->flag == ENDFILE)
 		{
 			*line = running;
 			return (0);
@@ -90,16 +90,4 @@ int		get_next_line(const int fd, char **line)
 			return (1);
 		}
 	}
-}
-
-// testing
-#include <fcntl.h>
-#include <stdio.h>
-int	main()
-{
-	char *line;
-	int y = open("testTwo", O_RDONLY);
-	while (get_next_line(y, &line))
-		printf("%s\n", line);
-	printf("%s\n", line);
 }

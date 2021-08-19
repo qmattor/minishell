@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/14 10:00:51 by bopok            ###   ########.fr       */
+/*   Updated: 2021/08/17 01:51:38 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "libft/libft.h"
-
+# include "get_next_line/libft/libft.h"
+# include "get_next_line/get_next_line.h"
 extern int	errno;
 
 /*********  	main.c		***********/
-char	    *scrape_args(char *input);
-
+char	*clean_call(char *call);
 #endif

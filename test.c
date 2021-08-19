@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qmattor <qmattor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 22:14:47 by qmattor           #+#    #+#             */
-/*   Updated: 2019/12/14 14:48:02 by qmattor          ###   ########.fr       */
+/*   Created: 2021/08/17 00:50:41 by bopok             #+#    #+#             */
+/*   Updated: 2021/08/19 02:10:36 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include <unistd.h>
 
-char	*ft_strncat(char *dest, char *src, size_t n)
+int		main(int argc, char **argv, char **envp)
 {
-	char	*ogptr;
-
-	ogptr = dest;
-	while (*dest)
-		dest++;
-	while (*src && n--)
-		*dest++ = *src++;
-	*dest = 0;
-	return (ogptr);
+	char	**args = {"-l", "-a", NULL};
+	execve("test3.out", NULL, envp);
+	write(1, "failed\n", 7);
 }
