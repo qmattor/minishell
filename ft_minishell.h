@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 08:04:00 by bopok             #+#    #+#             */
-/*   Updated: 2021/08/17 01:51:38 by bopok            ###   ########.fr       */
+/*   Updated: 2021/09/01 11:42:08 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@
 extern int	errno;
 
 /*********  	main.c		***********/
-char	*clean_call(char *call);
+char		*clean_call(char *call);
+void		child_proc(char	**parsed_args, char **envp);
+char		bult_ins(char **str, char **envp);
+char		**parse_from_in(char *in);
 #endif

@@ -3,7 +3,7 @@ NAME := ft_minishell
 CFLAGS := -Wall -Wextra -Werror
 LIBFT := get_next_line/libft/libft.a
 GNL := get_next_line/get_next_line.a
-SOURCE := main.c
+SOURCE := main.c parsing.c
 
 OBJECTS := $(patsubst %.c,%.o,$(SOURCE))
 
