@@ -6,7 +6,7 @@
 /*   By: bopok <bopok@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 11:39:42 by bopok             #+#    #+#             */
-/*   Updated: 2021/09/01 16:36:13 by bopok            ###   ########.fr       */
+/*   Updated: 2021/09/09 12:05:10 by bopok            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,58 @@
 char	**parse_from_in(char *in)
 {
 	char	**ret;
+	char	*new_in;
 	char	not_quotes;
-	int		first;
-	int		second;
-	int		i;
-	int		num_breaks;
+	int		arr[4];
 
-	first = 0;
-	num_breaks = 0;
-	while (in[first])
+	arr[FIRST] = 0;
+	arr[NUMBREAK] = 0;
+	new_in = ft_strjoin(in, " ");
+	while (new_in[arr[FIRST]])
 	{
-		if (in[first] == ' ')		//bc it's for malloc idc that it will over count
-			num_breaks++;
-		first++;
+		if (new_in[arr[FIRST]] == ' ')
+			arr[NUMBREAK]++;
+		arr[FIRST]++;
 	}
-	ret = malloc(sizeof(char *) * num_breaks);
-	first = 0;
-	second = 0;
-	i = 0;
+	ret = malloc(sizeof(char *) * (arr[NUMBREAK] + 1));
+	arr[FIRST] = 0;
+	arr[SECOND] = 0;
+	arr[ITER] = 0;
 	not_quotes = 0;
-	while (in[first])
+	while (new_in[arr[FIRST]])
 	{
-		if (in[first] == '\"')  //ignore escape sequinces for the moment because fuck that
+		if (new_in[arr[FIRST]] == '\"')  //ignore escape sequinces for the moment because fuck that
 			not_quotes = !not_quotes;
-		if (in[first] == ' ' && !not_quotes)
+		if (new_in[arr[FIRST]] == ' ' && !not_quotes)
 		{
-			ret[i++] = ft_strsub(in, second, first - second);
-			while (in[first] == ' ')
-				first++;
-			second = first;
+			ret[arr[ITER]++] = ft_strsub(in, arr[SECOND], arr[FIRST] - arr[SECOND]);
+			while (new_in[arr[FIRST]] == ' ')
+				arr[FIRST]++;
+			arr[SECOND] = arr[FIRST];
 		}
+		else
+			arr[FIRST]++;
 	}
-	ret[i] = NULL;
+	ret[arr[ITER]] = NULL;
+	free(new_in);
+	return (ret);
+}
+
+char	*ig_ch(char	*str)
+{
+	char	*ret_str;
+	char	*ptr_new;
+	char	*ptr_old;
+
+	ret_str = ft_strnew(ft_strlen(str));
+	ptr_new = ret_str;
+	ptr_old = str;
+	while (*ptr_old)
+	{
+		if (*ptr_old != '\"')	//idrk what other things should be cleaned atm but they go here
+			*ptr_new++ = *ptr_old;
+		ptr_old++;
+	}
+	free(str);
+	return (ret_str);
 }
